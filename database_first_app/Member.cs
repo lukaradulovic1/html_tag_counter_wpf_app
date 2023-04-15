@@ -12,11 +12,23 @@ namespace database_first_app
     using System;
     using System.Collections.Generic;
     
-    public partial class Member
+    public class Member
     {
         public int id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
-        public Nullable<int> training_group_id { get; set; }
+        public int training_group_id { get; set; }
+
+        public Member(int id, string first_name, string last_name, int training_group_id)
+        {
+            this.id = id;
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.training_group_id = training_group_id;
+        }
+
+        public Member()
+        {
+        }
     }
 }

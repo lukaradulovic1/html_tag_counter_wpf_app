@@ -12,11 +12,22 @@ namespace database_first_app
     using System;
     using System.Collections.Generic;
     
-    public partial class Training
+    public class Training
     {
         public int id { get; set; }
-        public Nullable<System.TimeSpan> training_time { get; set; }
-        public Nullable<int> training_group_id { get; set; }
-        public Nullable<int> trainer { get; set; }
+        public TimeSpan training_time { get; set; }
+        public int training_group_id { get; set; }
+        public int trainer { get; set; }
+        public Training(int id, TimeSpan training_time, int training_group_id, int trainer)
+        {
+            this.id = id;
+            this.training_time = training_time;
+            this.training_group_id = training_group_id;
+            this.trainer = trainer;
+        }
+
+        public Training()
+        {
+        }
     }
 }
