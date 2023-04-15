@@ -1,0 +1,13 @@
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.csproj.AssemblyReference.cache
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.csproj.SuggestedBindingRedirects.cache
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.csproj.CoreCompileInputs.cache
+G:\Project_repository\database_first_app\bin\Debug\database_first_app.exe.config
+G:\Project_repository\database_first_app\bin\Debug\database_first_app.exe
+G:\Project_repository\database_first_app\bin\Debug\database_first_app.pdb
+G:\Project_repository\database_first_app\bin\Debug\EntityFramework.dll
+G:\Project_repository\database_first_app\bin\Debug\EntityFramework.SqlServer.dll
+G:\Project_repository\database_first_app\bin\Debug\EntityFramework.xml
+G:\Project_repository\database_first_app\bin\Debug\EntityFramework.SqlServer.xml
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.csproj.CopyComplete
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.exe
+G:\Project_repository\database_first_app\obj\Debug\database_first_app.pdb
