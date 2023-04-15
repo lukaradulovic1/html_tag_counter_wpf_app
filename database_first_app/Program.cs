@@ -23,13 +23,18 @@ namespace database_first_app
 
             var member = new Member(10, "John", "Smith", 10);
             dbContext.Members.Add(member);
+            dbContext.SaveChanges();
 
             dbContext.Trainers.Add(new Trainer(10, "Greg", "Jackson"));
+            dbContext.SaveChanges();
 
             dbContext.TrainingGroups.Add(new TrainingGroup(10, 10));
+            dbContext.SaveChanges();
 
             dbContext.Trainings.Add(new Training(10, new TimeSpan(18,9,9), 10, 10));
-            Console.WriteLine("Latest data: \n");
+            dbContext.SaveChanges();
+
+            Console.WriteLine("\n\n\n\n\n\nLatest data: \n");
             databaseTools.PrintAllTrainers(dbContext);
             databaseTools.PrintAllMembers(dbContext);
             databaseTools.PrintAllGroups(dbContext);
