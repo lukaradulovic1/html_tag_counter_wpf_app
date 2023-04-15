@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/database_first_entity_app/FileContentIndex/3cbb5062-1655-44da-bc34-f8fb11255574.vsidx
+/.vs/database_first_entity_app/FileContentIndex/read.lock
+/Properties/AssemblyInfo.cs
+/Properties
+/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/obj/Debug/database_first_entity_app.csproj.AssemblyReference.cache
+/obj/Debug/.NETFramework,Version=v4.8.AssemblyAttributes.cs
+/database_first_entity_app.sln
+/database_first_entity_app.csproj
+/App.config
+/.vs/database_first_entity_app/v17/.suo
+/.vs/database_first_entity_app/FileContentIndex/a7f9d797-17f8-48a3-9bec-78038327565e.vsidx
+/.vs/database_first_entity_app/FileContentIndex/8b968972-87ab-40f8-8e97-bf9ecefd527a.vsidx
+/.vs/database_first_entity_app/FileContentIndex/5a93d47c-c7ff-42b8-bae4-caee9f19c119.vsidx
+/.vs/database_first_entity_app/FileContentIndex/2102b1a8-c71f-46c3-a30e-d213d5dad593.vsidx
+/.vs/database_first_entity_app/FileContentIndex/5ea9d7df-615c-4a7d-bd90-8f13fb2fdc58.vsidx
+/.vs/database_first_entity_app/FileContentIndex/235702dd-5d39-4e6b-b556-3db75cbefa4a.vsidx
