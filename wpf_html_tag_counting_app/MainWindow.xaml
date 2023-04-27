@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-            <Button x:Name="button_open" Content="Open file" HorizontalAlignment="Center" VerticalAlignment="Top" Height="54" Width="204" FontSize="30" Click="ButtonOpenClick" Margin="0,243,0,0"/>
+        <TextBlock x:Name="highestValueTextblock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="4.145,-15.586" Height="32" Width="764"/>
+        <Button x:Name="button_open" Content="Open file" HorizontalAlignment="Center" VerticalAlignment="Top" Height="54" Width="204" FontSize="30" Click="ButtonOpenClick" Margin="0,243,0,0"/>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,37,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="121" Width="780" />
             <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Center" Margin="0,329,0,0" VerticalAlignment="Top" Height="50" Width="204" FontSize="30" Click="ButtonCancelClick"/>
             <ProgressBar HorizontalAlignment="Center" Height="40" Margin="0,177,0,0" VerticalAlignment="Top" Width="700"/>

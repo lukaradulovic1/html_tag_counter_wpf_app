@@ -12,8 +12,7 @@ namespace wpf_html_tag_counting_app
 {
     public class UrlTagCounter
     {
-
-        public void ProcessFile(TextBlock textBlock)
+        public void ProcessFile(TextBlock textBlock, TextBlock highestValueTextblock)
         {
             OpenFileDialog openFileDialog;
             InitiateDialogWindow(out openFileDialog, out bool? result);
@@ -25,7 +24,7 @@ namespace wpf_html_tag_counting_app
                 Dictionary<string, int> urlTagCountDictionary = new Dictionary<string, int>();
                 Dictionary<string, string> failedDownloads = new Dictionary<string, string>();
 
-                ProcessPair(fileContents, urlTagCountDictionary, failedDownloads, textBlock);
+                ProcessPair(fileContents, urlTagCountDictionary, failedDownloads, textBlock, highestValueTextblock);
             }
         }
         private static void InitiateDialogWindow(out OpenFileDialog openFileDialog, out bool? result)
@@ -47,17 +46,16 @@ namespace wpf_html_tag_counting_app
             List<string> fileContentsList = File.ReadAllLines(filePath).ToList();
             return fileContentsList;
         }
-        private void ProcessPair(List<string> fileContents, Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, TextBlock textBlock)
+        private void ProcessPair(List<string> fileContents, Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, TextBlock textBlock, TextBlock highestValueTextblock)
         {
-            HtmlParser htmlParser = new HtmlParser();
+            HtmlParser htmlPageParser = new HtmlParser();
             foreach (var item in fileContents)
             {
-                AddHtmlOutputToDictionary(urlTagCountDictionary, failedDownloads, htmlParser, item);
+                AddHtmlOutputToDictionary(urlTagCountDictionary, failedDownloads, htmlPageParser, item, highestValueTextblock);
                 DisplayDictionariesOnTextBlock(urlTagCountDictionary, failedDownloads, textBlock);
             }
         }
-
-        private static void AddHtmlOutputToDictionary(Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, HtmlParser htmlPageParser, string item)
+        private static void AddHtmlOutputToDictionary(Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, HtmlParser htmlPageParser, string item, TextBlock highestValueTextblock)
         {
             try
             {
@@ -70,7 +68,6 @@ namespace wpf_html_tag_counting_app
                     {
                         urlTagCountDictionary.Add(item, numATags);
                     }
-
                     else
                     {
                         failedDownloads.Add(item, "Tag count is 0 due to HTML file not providing tags");
@@ -80,6 +77,18 @@ namespace wpf_html_tag_counting_app
             catch (Exception ex)
             {
                 failedDownloads.Add(item, ex.Message);
+            }
+            HighestValueInUrlTagCount(urlTagCountDictionary, highestValueTextblock);
+        }
+        private static void HighestValueInUrlTagCount(Dictionary<string, int> urlTagCountDictionary, TextBlock highestValueTextblock)
+        {
+            var highestValue = urlTagCountDictionary.OrderByDescending(d => d.Value).FirstOrDefault();
+            if (highestValue.Key != null)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"The URL with the highest number of <a> tags is: {highestValue.Key} with a count of {highestValue.Value}");
+                TextBlockUpdater textBlockUpdater = new TextBlockUpdater(highestValueTextblock);
+                textBlockUpdater.UpdateText(sb.ToString());
             }
         }
         private static void DisplayDictionariesOnTextBlock(Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, TextBlock textBlock)
@@ -102,6 +111,6 @@ namespace wpf_html_tag_counting_app
                 Application.Current.Dispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.Background);
             }
         }
-
     }
 }
+

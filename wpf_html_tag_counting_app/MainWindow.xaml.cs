@@ -30,9 +30,8 @@ namespace wpf_html_tag_counting_app
         {
             button_cancel.IsEnabled = true;
             var urlTagCounter = new UrlTagCounter();
-            urlTagCounter.ProcessFile(textBlock);
+            urlTagCounter.ProcessFile(textBlock, highestValueTextblock);
         }
-
         private void ButtonCancelClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel?", "Confirmation", MessageBoxButton.YesNo);
