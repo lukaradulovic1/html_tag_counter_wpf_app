@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/book_ranking_tests
+/book_ranking_method_kroon
+/Book_ordering_method_test
+/Book_ordering_method_kroon
+/async_test
+/wpf_test
+/wpf_random_plate
+/wpf_quipu_project
+/WebApplication1
+/startup_test
+/rand_cod
+/random_code
+/mosh_aspnet_mvc
+/loading_bar_test
+/interface_implementation
+/html_link_reader
+/hello_app
+/gym_database_mvc
+/deposit_interface
+/database_first_aspnet_app_mvc
+/circle_interface
