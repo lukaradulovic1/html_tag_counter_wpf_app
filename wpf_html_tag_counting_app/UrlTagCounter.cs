@@ -12,9 +12,9 @@ namespace wpf_html_tag_counting_app
 {
     public class UrlTagCounter
     {
-        private TextBlock textBlock;
-        private TextBlock highestValueTextblock;
-        private ProgressBar progressBar;
+        private readonly TextBlock textBlock;
+        private readonly TextBlock highestValueTextblock;
+        private readonly ProgressBar progressBar;
         private List<string>? fileContents;
         private Dictionary<string, int>? urlTagCountDictionary;
         private Dictionary<string, string>? failedDownloads;
