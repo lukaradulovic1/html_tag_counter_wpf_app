@@ -13,6 +13,10 @@ namespace wpf_html_tag_counting_app
     {
         public string DownloadUrlHtmlToString(string txtUrlAdress)
         {
+            if (!Uri.IsWellFormedUriString(txtUrlAdress, UriKind.Absolute))
+            {
+                txtUrlAdress = "http://" + txtUrlAdress;
+            }
             using (WebClient webClient = new WebClient())
             {
                 int maxRetries = 5;
