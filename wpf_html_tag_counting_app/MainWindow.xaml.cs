@@ -41,6 +41,7 @@ namespace wpf_html_tag_counting_app
             if (result == MessageBoxResult.Yes)
             {
                 ClearState();
+                button_clear.IsEnabled = false;
             }
         }
 
