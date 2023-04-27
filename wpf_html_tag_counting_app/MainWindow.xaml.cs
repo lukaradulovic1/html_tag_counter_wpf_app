@@ -23,6 +23,23 @@ namespace wpf_html_tag_counting_app
         public MainWindow()
         {
             InitializeComponent();
+            button_cancel.IsEnabled = false;
+
+        }
+        private void ButtonOpenClick(object sender, RoutedEventArgs e)
+        {
+            button_cancel.IsEnabled = true;
+            var urlTagCounter = new UrlTagCounter();
+            urlTagCounter.ProcessFile(textBlock);
+        }
+
+        private void ButtonCancelClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                textBlock.Text = string.Empty;
+            }
         }
     }
 }
