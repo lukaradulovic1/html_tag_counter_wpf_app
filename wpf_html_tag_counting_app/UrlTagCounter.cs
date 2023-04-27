@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,6 +19,7 @@ namespace wpf_html_tag_counting_app
         private List<string>? fileContents;
         private Dictionary<string, int>? urlTagCountDictionary;
         private Dictionary<string, string>? failedDownloads;
+        private bool shouldCancel;
 
         public UrlTagCounter(TextBlock textBlock, TextBlock highestValueTextblock, ProgressBar progressBar)
         {
@@ -61,12 +63,18 @@ namespace wpf_html_tag_counting_app
         }
         private void ProcessUrls()
         {
-            HtmlParser htmlPageParser = new HtmlParser();
+            HtmlParser htmlParser = new HtmlParser();
             foreach (var url in fileContents)
             {
-                AddHtmlOutputToDictionary(htmlPageParser, url);
+                AddHtmlOutputToDictionary(htmlParser, url);
                 DisplayTagDictionaryOnTextBlock();
                 ProgressBarIncrement();
+
+                if (shouldCancel)
+                {
+                    shouldCancel = false;
+                    break;
+                }
             }
 
         }
@@ -134,6 +142,11 @@ namespace wpf_html_tag_counting_app
             double progressPercentage = (double)processedItems / (double)totalItems * 100.0;
 
             progressBar.Value = progressPercentage;
+        }
+
+        public void Cancel()
+        {
+            shouldCancel = true;
         }
     }
 }

@@ -20,18 +20,19 @@ namespace wpf_html_tag_counting_app
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly UrlTagCounter urlTagCounter;
         public MainWindow()
         {
             InitializeComponent();
             button_cancel.IsEnabled = false;
             button_clear.IsEnabled = false;
             ClearState();
+            urlTagCounter = new UrlTagCounter(textBlock, highestValueTextblock, progressBar);
         }
         private void ButtonOpenClick(object sender, RoutedEventArgs e)
         {
             ClearState();
             button_cancel.IsEnabled = true;
-            var urlTagCounter = new UrlTagCounter(textBlock, highestValueTextblock, progressBar);
             urlTagCounter.ProcessFile();
         }
         private void ButtonClearClick(object sender, RoutedEventArgs e)
@@ -57,6 +58,7 @@ namespace wpf_html_tag_counting_app
             {
                 button_cancel.IsEnabled = false;
                 button_clear.IsEnabled = true;
+                urlTagCounter.Cancel();
             }
         }
     }
