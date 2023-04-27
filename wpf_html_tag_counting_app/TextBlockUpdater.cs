@@ -18,7 +18,6 @@ namespace wpf_html_tag_counting_app
                 _textBlock.Text = text;
             });
         }
-
         public void ResetApp()
         {
             _textBlock.Text = "";

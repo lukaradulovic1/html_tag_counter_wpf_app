@@ -20,17 +20,18 @@ namespace wpf_html_tag_counting_app
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ProgressBar progressBar;
         public MainWindow()
         {
             InitializeComponent();
             button_cancel.IsEnabled = false;
-
+            progressBar = myProgressBar;
         }
         private void ButtonOpenClick(object sender, RoutedEventArgs e)
         {
             button_cancel.IsEnabled = true;
             var urlTagCounter = new UrlTagCounter();
-            urlTagCounter.ProcessFile(textBlock, highestValueTextblock);
+            urlTagCounter.ProcessFile(textBlock, highestValueTextblock, progressBar);
         }
         private void ButtonCancelClick(object sender, RoutedEventArgs e)
         {
@@ -38,6 +39,8 @@ namespace wpf_html_tag_counting_app
             if (result == MessageBoxResult.Yes)
             {
                 textBlock.Text = string.Empty;
+                highestValueTextblock.Text = string.Empty;
+                progressBar.Value = 0;
             }
         }
     }
