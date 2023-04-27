@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "79C6fe4UcfZoNiuWbt5Mc/gBpp4w0JqWr6s7ZxgXqkxjeKlJgKlcwQ/YAOlIelj+Nc9Gm9udMNhTqe6KCbYvbg==",
+  "dgSpecHash": "lterKDPrnQkUG/JXE7Qvqvz1xJVWD5s64NK0xi3dnBKxDOayCeJuvmsH8zD+Ufc7AAGxBgznimckYrLtlkdFIA==",
   "success": true,
   "projectFilePath": "G:\\Project_repository\\wpf_html_tag_counting_app\\wpf_html_tag_counting_app.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Luka\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512"
+  ],
   "logs": []
 }
