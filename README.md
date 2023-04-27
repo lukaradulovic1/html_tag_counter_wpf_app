@@ -21,4 +21,4 @@ For instance, to search for href, you can modify the code line to:
 HtmlNodeCollection linkNodes = doc.DocumentNode.SelectNodes("//a[@href]");
 
 You can modify the code line similarly for other tags.
-**
+
