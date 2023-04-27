@@ -12,19 +12,31 @@ namespace wpf_html_tag_counting_app
 {
     public class UrlTagCounter
     {
-        public void ProcessFile(TextBlock textBlock, TextBlock highestValueTextblock, ProgressBar progressBar)
+        private TextBlock textBlock;
+        private TextBlock highestValueTextblock;
+        private ProgressBar progressBar;
+        private List<string>? fileContents;
+        private Dictionary<string, int>? urlTagCountDictionary;
+        private Dictionary<string, string>? failedDownloads;
+
+        public UrlTagCounter(TextBlock textBlock, TextBlock highestValueTextblock, ProgressBar progressBar)
+        {
+            this.textBlock = textBlock;
+            this.highestValueTextblock = highestValueTextblock;
+            this.progressBar = progressBar;
+        }
+
+        public void ProcessFile()
         {
             OpenFileDialog openFileDialog;
             InitiateDialogWindow(out openFileDialog, out bool? result);
 
             if (result == true)
             {
-                List<string> fileContents = ReadTextContents(openFileDialog);
-
-                Dictionary<string, int> urlTagCountDictionary = new Dictionary<string, int>();
-                Dictionary<string, string> failedDownloads = new Dictionary<string, string>();
-
-                ProcessUrls(fileContents, urlTagCountDictionary, failedDownloads, textBlock, highestValueTextblock, progressBar);
+                fileContents = ReadTextContents(openFileDialog);
+                urlTagCountDictionary = new();
+                failedDownloads = new();
+                ProcessUrls();
 
             }
         }
@@ -47,43 +59,43 @@ namespace wpf_html_tag_counting_app
             List<string> fileContentsList = File.ReadAllLines(filePath).ToList();
             return fileContentsList;
         }
-        private void ProcessUrls(List<string> fileContents, Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, TextBlock textBlock, TextBlock highestValueTextblock, ProgressBar progressBar)
+        private void ProcessUrls()
         {
             HtmlParser htmlPageParser = new HtmlParser();
             foreach (var url in fileContents)
             {
-                AddHtmlOutputToDictionary(urlTagCountDictionary, failedDownloads, htmlPageParser, url, highestValueTextblock);
-                DisplayTagDictionaryOnTextBlock(urlTagCountDictionary, failedDownloads, textBlock);
-                ProgressBarIncrement(fileContents, urlTagCountDictionary, failedDownloads, progressBar);
+                AddHtmlOutputToDictionary(htmlPageParser, url);
+                DisplayTagDictionaryOnTextBlock();
+                ProgressBarIncrement();
             }
 
         }
-        private void AddHtmlOutputToDictionary(Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, HtmlParser htmlPageParser, string item, TextBlock highestValueTextblock)
+        private void AddHtmlOutputToDictionary(HtmlParser htmlPageParser, string url)
         {
             try
             {
-                var htmlContent = htmlPageParser.DownloadUrlHtmlToString(item);
+                var htmlContent = htmlPageParser.DownloadUrlHtmlToString(url);
                 var numATags = htmlPageParser.CountTagsInHtmlString(htmlContent);
 
                 if (htmlContent != null)
                 {
                     if (numATags > 0)
                     {
-                        urlTagCountDictionary.Add(item, numATags);
+                        urlTagCountDictionary.Add(url, numATags);
                     }
                     else
                     {
-                        failedDownloads.Add(item, "Tag count is 0 due to HTML file not providing tags");
+                        failedDownloads.Add(url, "Tag count is 0 due to HTML file not providing tags");
                     }
                 }
             }
             catch (Exception ex)
             {
-                failedDownloads.Add(item, ex.Message);
+                failedDownloads.Add(url, ex.Message);
             }
-            HighestValueInUrlTagCount(urlTagCountDictionary, highestValueTextblock);
+            HighestValueInUrlTagCount();
         }
-        private void HighestValueInUrlTagCount(Dictionary<string, int> urlTagCountDictionary, TextBlock highestValueTextblock)
+        private void HighestValueInUrlTagCount()
         {
             var highestValue = urlTagCountDictionary.OrderByDescending(d => d.Value).FirstOrDefault();
             if (highestValue.Key != null)
@@ -94,7 +106,7 @@ namespace wpf_html_tag_counting_app
                 textBlockUpdater.UpdateText(sb.ToString());
             }
         }
-        private void DisplayTagDictionaryOnTextBlock(Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, TextBlock textBlock)
+        private void DisplayTagDictionaryOnTextBlock()
         {
             if (textBlock != null)
             {
@@ -114,14 +126,14 @@ namespace wpf_html_tag_counting_app
                 Application.Current.Dispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.Background);
             }
         }
-        private void ProgressBarIncrement(List<string> fileContents, Dictionary<string, int> urlTagCountDictionary, Dictionary<string, string> failedDownloads, ProgressBar _progressBar)
+        private void ProgressBarIncrement()
         {
             int totalItems = fileContents.Count;
             int processedItems = urlTagCountDictionary.Count + failedDownloads.Count;
 
             double progressPercentage = (double)processedItems / (double)totalItems * 100.0;
 
-            _progressBar.Value = progressPercentage;
+            progressBar.Value = progressPercentage;
         }
     }
 }

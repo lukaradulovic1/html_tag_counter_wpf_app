@@ -30,8 +30,8 @@ namespace wpf_html_tag_counting_app
         private void ButtonOpenClick(object sender, RoutedEventArgs e)
         {
             button_cancel.IsEnabled = true;
-            var urlTagCounter = new UrlTagCounter();
-            urlTagCounter.ProcessFile(textBlock, highestValueTextblock, progressBar);
+            var urlTagCounter = new UrlTagCounter(textBlock, highestValueTextblock, progressBar);
+            urlTagCounter.ProcessFile();
         }
         private void ButtonCancelClick(object sender, RoutedEventArgs e)
         {
