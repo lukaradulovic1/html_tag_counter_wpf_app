@@ -9,8 +9,9 @@
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" MaxHeight="500" Width="411" Height="346" />
         <TextBlock x:Name="highestValueTextblock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="4.145,-15.586" Height="32" Width="365" Margin="0,10,0,0"/>
-        <Button x:Name="button_open" Content="Open file" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Width="204" FontSize="30" Click="ButtonOpenClick" Margin="432,241,0,0"/>
-        <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="432,323,0,0" VerticalAlignment="Top" Height="50" Width="204" FontSize="30" Click="ButtonCancelClick"/>
-        <ProgressBar x:Name="myProgressBar" HorizontalAlignment="Left" Height="40" Margin="432,177,0,0" VerticalAlignment="Top" Width="204"/>
+        <Button x:Name="button_open" Content="Open file" HorizontalAlignment="Left" VerticalAlignment="Center" Height="54" Width="204" FontSize="30" Click="ButtonOpenClick" Margin="432,0,0,0"/>
+        <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="432,338,0,0" VerticalAlignment="Top" Height="50" Width="204" FontSize="30" Click="ButtonCancelClick"/>
+        <Button x:Name="button_clear" Content="Clear" HorizontalAlignment="Left" Margin="432,267,0,0" VerticalAlignment="Top" Height="50" Width="204" FontSize="30" Click="ButtonClearClick"/>
+        <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="40" Margin="432,128,0,0" VerticalAlignment="Top" Width="204"/>
     </Grid>
 </Window>

@@ -20,28 +20,46 @@ namespace wpf_html_tag_counting_app
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ProgressBar progressBar;
         public MainWindow()
         {
             InitializeComponent();
             button_cancel.IsEnabled = false;
-            progressBar = myProgressBar;
+            button_clear.IsEnabled = false;
+            ClearState();
         }
         private void ButtonOpenClick(object sender, RoutedEventArgs e)
         {
+            ClearState();
             button_cancel.IsEnabled = true;
             var urlTagCounter = new UrlTagCounter(textBlock, highestValueTextblock, progressBar);
             urlTagCounter.ProcessFile();
         }
+        private void ButtonClearClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to clear?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                ClearState();
+            }
+        }
+
+        private void ClearState()
+        {
+            textBlock.Text = string.Empty;
+            highestValueTextblock.Text = string.Empty;
+            progressBar.Value = 0;
+        }
+
         private void ButtonCancelClick(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel?", "Confirmation", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                textBlock.Text = string.Empty;
-                highestValueTextblock.Text = string.Empty;
-                progressBar.Value = 0;
+                button_cancel.IsEnabled = false;
+                button_clear.IsEnabled = true;
             }
         }
     }
 }
+
+
