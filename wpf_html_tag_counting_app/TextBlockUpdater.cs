@@ -5,22 +5,22 @@ namespace wpf_html_tag_counting_app
 
     public class TextBlockUpdater
     {
-        private TextBlock _textBlock;
+        private TextBlock textBlock;
         public TextBlockUpdater(TextBlock textBlock)
         {
-            _textBlock = textBlock;
+            textBlock = textBlock;
         }
         public void UpdateText(string text)
         {
             // Use the Dispatcher to update the TextBlock on the UI thread
-            _textBlock.Dispatcher.Invoke(() =>
+            textBlock.Dispatcher.Invoke(() =>
             {
-                _textBlock.Text = text;
+                textBlock.Text = text;
             });
         }
         public void ResetApp()
         {
-            _textBlock.Text = "";
+            textBlock.Text = "";
         }
     }
 }
