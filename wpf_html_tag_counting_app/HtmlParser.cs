@@ -19,9 +19,7 @@ namespace wpf_html_tag_counting_app
             }
             using (WebClient webClient = new WebClient())
             {
-                int maxRetries = 5;
-                int retryCount = 0;
-                int delayToRetry = 5000;
+                int maxRetries = 5, retryCount = 0, delayToRetry = 5000;
 
                 while (retryCount < maxRetries)
                 {

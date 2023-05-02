@@ -12,7 +12,6 @@ namespace wpf_html_tag_counting_app
         }
         public void UpdateText(string text)
         {
-            // Use the Dispatcher to update the TextBlock on the UI thread
             displayTextBlock.Dispatcher.Invoke(() =>
             {
                 displayTextBlock.Text = text;
