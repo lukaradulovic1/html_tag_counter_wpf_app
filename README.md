@@ -8,6 +8,9 @@ The WPF HTML Tag Counting App is a simple application that counts the number of 
 
 To run the application, you can either download the Git repository and run it from a debugger, or navigate to the wpf_html_tag_counting_app\bin\Debug\net6.0-windows folder and run the .exe file.
 
+**Notice**
+HTML Agility pack is needed in order to run the app.
+
 **How to use:**
 
 1. Choose a .txt file that contains a list of URLs via the dialog box opened by clicking the "Choose File" button.
